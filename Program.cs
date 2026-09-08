@@ -456,3 +456,157 @@ namespace CatalogoBiblioteca
             minHeap.Imprimir();
         }
 
+        // Muestra el contenido del Max Heap
+        static void MostrarMaxHeap()
+        {
+            Console.WriteLine();
+
+            Console.WriteLine(
+                "---- MAX HEAP ----"
+            );
+
+            maxHeap.Imprimir();
+        }
+
+        // Muestra la estructura del Árbol B+
+        static void MostrarArbol()
+        {
+            Console.WriteLine();
+
+            Console.WriteLine(
+                "---- ÁRBOL B+ ----"
+            );
+
+            arbol.Imprimir();
+        }
+
+        // Recorre las hojas del Árbol B+
+        static void RecorrerArbol()
+        {
+            Console.WriteLine();
+
+            Console.WriteLine(
+                "---- RECORRIDO ÁRBOL B+ ----"
+            );
+
+            arbol.Recorrer();
+        }
+
+        // Busca un libro directamente en el Min Heap
+        static void BuscarMinHeap()
+        {
+            Console.WriteLine();
+
+            Console.WriteLine(
+                "---- BUSCAR EN MIN HEAP ----"
+            );
+
+            Console.Write(
+                "Ingresa el código: "
+            );
+
+            string codigo =
+                Console.ReadLine() ?? "";
+
+            Libro? libro =
+                minHeap.Buscar(codigo);
+
+            if (libro == null)
+            {
+                Console.WriteLine(
+                    "Libro no encontrado."
+                );
+            }
+            else
+            {
+                MostrarDatosLibro(libro);
+            }
+        }
+
+        // Busca un libro directamente en el Max Heap
+        static void BuscarMaxHeap()
+        {
+            Console.WriteLine();
+
+            Console.WriteLine(
+                "---- BUSCAR EN MAX HEAP ----"
+            );
+
+            Console.Write(
+                "Ingresa el código: "
+            );
+
+            string codigo =
+                Console.ReadLine() ?? "";
+
+            Libro? libro =
+                maxHeap.Buscar(codigo);
+
+            if (libro == null)
+            {
+                Console.WriteLine(
+                    "Libro no encontrado."
+                );
+            }
+            else
+            {
+                MostrarDatosLibro(libro);
+            }
+        }
+
+        // Recorre el Min Heap
+        static void RecorrerMinHeap()
+        {
+            Console.WriteLine();
+
+            Console.WriteLine(
+                "---- RECORRIDO MIN HEAP ----"
+            );
+
+            minHeap.Recorrer();
+        }
+
+        // Recorre el Max Heap
+        static void RecorrerMaxHeap()
+        {
+            Console.WriteLine();
+
+            Console.WriteLine(
+                "---- RECORRIDO MAX HEAP ----"
+            );
+
+            maxHeap.Recorrer();
+        }
+
+        // Muestra toda la información de un libro
+        static void MostrarDatosLibro(
+            Libro libro)
+        {
+            Console.WriteLine();
+
+            Console.WriteLine(
+                "---- DATOS DEL LIBRO ----"
+            );
+
+            libro.Mostrar();
+        }
+
+        // Solicita un número entero válido al usuario
+        static int LeerEntero()
+        {
+            int numero;
+
+            // Repite hasta que el usuario ingrese un entero válido
+            while (!int.TryParse(
+                Console.ReadLine() ?? "",
+                out numero))
+            {
+                Console.Write(
+                    "Ingresa un número válido: "
+                );
+            }
+
+            return numero;
+        }
+    }
+}
