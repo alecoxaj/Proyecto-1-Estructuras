@@ -95,4 +95,234 @@ namespace CatalogoBiblioteca
                     padre;
             }
         }
-}   }
+
+        // Busca un libro por su código
+        public Libro? Buscar(string codigo)
+        {
+            // La búsqueda es lineal porque el Heap está
+            // organizado por préstamos y no por código
+            for (int i = 0; i < cantidad; i++)
+            {
+                if (elementos[i]!.Codigo == codigo)
+                {
+                    return elementos[i];
+                }
+            }
+
+            // Retorna null si el libro no existe
+            return null;
+        }
+
+        // Elimina un libro por su código
+        public bool Eliminar(string codigo)
+        {
+            int indice = -1;
+
+            // Busca la posición del libro
+            for (int i = 0; i < cantidad; i++)
+            {
+                if (elementos[i]!.Codigo == codigo)
+                {
+                    indice = i;
+                    break;
+                }
+            }
+
+            // Si no se encontró el libro, no se elimina nada
+            if (indice == -1)
+            {
+                return false;
+            }
+
+            // Coloca el último elemento en la posición
+            // del elemento que se quiere eliminar
+            elementos[indice] =
+                elementos[cantidad - 1];
+
+            // Limpia la última posición
+            elementos[cantidad - 1] =
+                null;
+
+            cantidad--;
+
+            // Si la posición continúa dentro del Heap,
+            // se debe recuperar el orden
+            if (indice < cantidad)
+            {
+                // Calcula la posición del padre
+                int padre =
+                    (indice - 1) / 2;
+
+                // Si el elemento es menor que su padre,
+                // debe subir
+                if (
+                    indice > 0 &&
+                    elementos[indice]!.VecesPrestado <
+                    elementos[padre]!.VecesPrestado
+                )
+                {
+                    Subir(indice);
+                }
+                else
+                {
+                    // De lo contrario, comprueba si debe bajar
+                    Bajar(indice);
+                }
+            }
+
+            return true;
+        }
+
+        // Extrae el libro con menor cantidad de préstamos
+        public Libro? ExtraerMinimo()
+        {
+            // Comprueba si el Heap está vacío
+            if (cantidad == 0)
+            {
+                return null;
+            }
+
+            // En un Min Heap el elemento mínimo está en la raíz
+            Libro minimo =
+                elementos[0]!;
+
+            // Mueve el último elemento a la raíz
+            elementos[0] =
+                elementos[cantidad - 1];
+
+            elementos[cantidad - 1] =
+                null;
+
+            cantidad--;
+
+            // Reorganiza el Heap desde la raíz
+            if (cantidad > 0)
+            {
+                Bajar(0);
+            }
+
+            return minimo;
+        }
+
+        // Hace bajar un elemento para mantener el orden del Min Heap
+        private void Bajar(int indice)
+        {
+            while (true)
+            {
+                // Calcula las posiciones de los hijos
+                int izquierdo =
+                    indice * 2 + 1;
+
+                int derecho =
+                    indice * 2 + 2;
+
+                // Inicialmente se considera al actual como el menor
+                int menor =
+                    indice;
+
+                // Comprueba si el hijo izquierdo es menor
+                if (
+                    izquierdo < cantidad &&
+                    elementos[izquierdo]!.VecesPrestado <
+                    elementos[menor]!.VecesPrestado
+                )
+                {
+                    menor =
+                        izquierdo;
+                }
+
+                // Comprueba si el hijo derecho es menor
+                if (
+                    derecho < cantidad &&
+                    elementos[derecho]!.VecesPrestado <
+                    elementos[menor]!.VecesPrestado
+                )
+                {
+                    menor =
+                        derecho;
+                }
+
+                // Si no existe un hijo menor, termina
+                if (menor == indice)
+                {
+                    break;
+                }
+
+                // Intercambia con el hijo de menor prioridad
+                Intercambiar(
+                    indice,
+                    menor
+                );
+
+                indice =
+                    menor;
+            }
+        }
+
+        // Intercambia dos posiciones dentro del arreglo
+        private void Intercambiar(
+            int primero,
+            int segundo)
+        {
+            Libro? temporal =
+                elementos[primero];
+
+            elementos[primero] =
+                elementos[segundo];
+
+            elementos[segundo] =
+                temporal;
+        }
+
+        // Imprime todos los libros del Min Heap
+        public void Imprimir()
+        {
+            // Comprueba si existen elementos
+            if (cantidad == 0)
+            {
+                Console.WriteLine(
+                    "El Min Heap está vacío."
+                );
+
+                return;
+            }
+
+            // Muestra los elementos en el orden interno del Heap
+            for (int i = 0; i < cantidad; i++)
+            {
+                Console.WriteLine(
+                    "Código: " +
+                    elementos[i]!.Codigo +
+                    " | Título: " +
+                    elementos[i]!.Titulo +
+                    " | Préstamos: " +
+                    elementos[i]!.VecesPrestado
+                );
+            }
+        }
+
+        // Recorre el Min Heap
+        public void Recorrer()
+        {
+            if (cantidad == 0)
+            {
+                Console.WriteLine(
+                    "El Min Heap está vacío."
+                );
+
+                return;
+            }
+
+            // Recorre todas las posiciones ocupadas del arreglo
+            for (int i = 0; i < cantidad; i++)
+            {
+                Console.WriteLine(
+                    elementos[i]!.Codigo +
+                    " -> " +
+                    elementos[i]!.VecesPrestado +
+                    " préstamos"
+                );
+            }
+        }
+    }
+}   
