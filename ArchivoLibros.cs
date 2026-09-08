@@ -106,3 +106,41 @@ namespace CatalogoBiblioteca
                 maxHeap.Insertar(libro);
             }
         }
+
+        // Guarda todos los libros en el archivo CSV
+        public void Guardar(
+            ArbolBPlus arbol)
+        {
+            // Obtiene todos los libros almacenados
+            // en las hojas del Árbol B+
+            Libro[] libros =
+                arbol.ObtenerTodos();
+
+            // Abre el archivo sobrescribiendo
+            // su contenido anterior
+            using (StreamWriter archivo =
+                new StreamWriter(
+                    nombreArchivo,
+                    false))
+            {
+                // Escribe los encabezados
+                archivo.WriteLine(
+                    "Codigo,Titulo,Autor,Categoria,CopiasDisponibles,VecesPrestado"
+                );
+
+                // Escribe cada libro en una línea del archivo
+                for (int i = 0; i < libros.Length; i++)
+                {
+                    archivo.WriteLine(
+                        libros[i].Codigo + "," +
+                        libros[i].Titulo + "," +
+                        libros[i].Autor + "," +
+                        libros[i].Categoria + "," +
+                        libros[i].CopiasDisponibles + "," +
+                        libros[i].VecesPrestado
+                    );
+                }
+            }
+        }
+    }
+}
