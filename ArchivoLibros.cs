@@ -36,3 +36,73 @@ namespace CatalogoBiblioteca
 
                 return;
             }
+
+            // Lee todas las líneas almacenadas en el archivo
+            string[] lineas =
+                File.ReadAllLines(nombreArchivo);
+
+            // Empieza en 1 para ignorar los encabezados
+            for (int i = 1; i < lineas.Length; i++)
+            {
+                // Ignora líneas vacías
+                if (lineas[i] == "")
+                {
+                    continue;
+                }
+
+                // Separa los datos utilizando la coma
+                string[] datos =
+                    lineas[i].Split(',');
+
+                // Cada registro debe contener seis campos
+                if (datos.Length != 6)
+                {
+                    continue;
+                }
+
+                // Recupera los datos de texto
+                string codigo = datos[0];
+                string titulo = datos[1];
+                string autor = datos[2];
+                string categoria = datos[3];
+
+                int copias;
+                int vecesPrestado;
+
+                // Convierte las copias disponibles a número entero
+                if (!int.TryParse(
+                    datos[4],
+                    out copias))
+                {
+                    continue;
+                }
+
+                // Convierte la cantidad de préstamos a entero
+                if (!int.TryParse(
+                    datos[5],
+                    out vecesPrestado))
+                {
+                    continue;
+                }
+
+                // Crea el objeto Libro con los datos recuperados
+                Libro libro =
+                    new Libro(
+                        codigo,
+                        titulo,
+                        autor,
+                        categoria,
+                        copias
+                    );
+
+                // Recupera la cantidad de veces
+                // que el libro había sido prestado
+                libro.VecesPrestado =
+                    vecesPrestado;
+
+                // Inserta el mismo libro en las tres estructuras
+                arbol.Insertar(libro);
+                minHeap.Insertar(libro);
+                maxHeap.Insertar(libro);
+            }
+        }
