@@ -1,0 +1,15 @@
+C:\Users\aleja\Desktop\Proyecto-1-Estructuras\bin\Debug\net10.0\Proyecto-1-Estructuras.exe
+C:\Users\aleja\Desktop\Proyecto-1-Estructuras\bin\Debug\net10.0\Proyecto-1-Estructuras.deps.json
+C:\Users\aleja\Desktop\Proyecto-1-Estructuras\bin\Debug\net10.0\Proyecto-1-Estructuras.runtimeconfig.json
+C:\Users\aleja\Desktop\Proyecto-1-Estructuras\bin\Debug\net10.0\Proyecto-1-Estructuras.dll
+C:\Users\aleja\Desktop\Proyecto-1-Estructuras\bin\Debug\net10.0\Proyecto-1-Estructuras.pdb
+C:\Users\aleja\Desktop\Proyecto-1-Estructuras\obj\Debug\net10.0\Proyecto-1-Estructuras.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\aleja\Desktop\Proyecto-1-Estructuras\obj\Debug\net10.0\Proyecto-1-Estructuras.AssemblyInfoInputs.cache
+C:\Users\aleja\Desktop\Proyecto-1-Estructuras\obj\Debug\net10.0\Proyecto-1-Estructuras.AssemblyInfo.cs
+C:\Users\aleja\Desktop\Proyecto-1-Estructuras\obj\Debug\net10.0\Proyecto-1-Estructuras.csproj.CoreCompileInputs.cache
+C:\Users\aleja\Desktop\Proyecto-1-Estructuras\obj\Debug\net10.0\Proyecto-1-Estructuras.sourcelink.json
+C:\Users\aleja\Desktop\Proyecto-1-Estructuras\obj\Debug\net10.0\Proyecto-1-Estructuras.dll
+C:\Users\aleja\Desktop\Proyecto-1-Estructuras\obj\Debug\net10.0\refint\Proyecto-1-Estructuras.dll
+C:\Users\aleja\Desktop\Proyecto-1-Estructuras\obj\Debug\net10.0\Proyecto-1-Estructuras.pdb
+C:\Users\aleja\Desktop\Proyecto-1-Estructuras\obj\Debug\net10.0\Proyecto-1-Estructuras.genruntimeconfig.cache
+C:\Users\aleja\Desktop\Proyecto-1-Estructuras\obj\Debug\net10.0\ref\Proyecto-1-Estructuras.dll
